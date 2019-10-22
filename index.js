@@ -1,3 +1,4 @@
+const SIZE = formatSize(0.3);
 const ROW_OFFSET = 0;
 const COL_OFFSET = 0;
 const ON_COLOR = [150, 180, 240, 210];
@@ -30,7 +31,9 @@ function makeCanvas(canvas) {
 
     for (let row = 0; row < height; ++row) {
         for (let col = 0; col < width; ++col) {
-            const isOn = isPrime((row + ROW_OFFSET) ^ (col + COL_OFFSET));
+            const isOn = isPrime(
+                ((row + ROW_OFFSET) * SIZE) ^ ((col + COL_OFFSET) * SIZE)
+            );
 
             const colorArr = isOn ? ON_COLOR : OFF_COLOR;
 
@@ -61,4 +64,10 @@ function isPrime(num) {
 
     MEMO.set(num, res);
     return res;
+}
+
+function formatSize(int) {
+    if (int % 2 === 0) return int + 0.5;
+
+    return int;
 }
