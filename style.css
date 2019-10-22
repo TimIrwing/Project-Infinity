@@ -9,4 +9,5 @@ body {
 
 canvas {
   flex-grow: 1;
+  image-rendering: crisp-edges;
 }
