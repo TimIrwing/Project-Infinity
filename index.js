@@ -1,8 +1,6 @@
 const SIZE = formatSize(0.3);
-const ROW_OFFSET = 0;
-const COL_OFFSET = 0;
-const ON_COLOR = [150, 180, 240, 210];
-const OFF_COLOR = [50, 50, 50, 255];
+const ON_COLOR = [50, 100, 200, 255];
+const OFF_COLOR = [25, 25, 25, 255];
 const CANVAS = document.querySelector('canvas');
 const MEMO = new Map();
 
