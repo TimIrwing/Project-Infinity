@@ -1,3 +1,5 @@
+let ROW_OFFSET = 0;
+let COL_OFFSET = 0;
 const SIZE = formatSize(0.3);
 const ON_COLOR = [50, 100, 200, 255];
 const OFF_COLOR = [25, 25, 25, 255];
@@ -15,6 +17,29 @@ window.onresize = () => {
             makeCanvas(CANVAS);
         }, 200);
     }
+};
+
+CANVAS.onmousedown = (e) => {
+    let prev = [e.clientX, e.clientY];
+    const cursor = CANVAS.style.cursor;
+    CANVAS.style.cursor = 'grabbing';
+
+    CANVAS.onmousemove = (e) => {
+        const next = [e.clientX, e.clientY];
+
+        COL_OFFSET += prev[0] - next[0];
+        ROW_OFFSET += prev[1] - next[1];
+
+        prev = next;
+
+        makeCanvas(CANVAS);
+    };
+
+    CANVAS.onmouseup = (e) => {
+        CANVAS.onmousemove = undefined;
+        CANVAS.onmouseup = undefined;
+        CANVAS.style.cursor = cursor;
+    };
 };
 
 function makeCanvas(canvas) {
